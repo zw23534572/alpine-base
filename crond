@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+
+start(){
+	echo "crond start"
+	crond -L /dev/null
+}
+
+stop(){
+	echo "crond stop"
+	crond_pid=`ps | grep crond | grep -v "grep" | awk '{print $1}'`
+	if [ "$crond_pid" != "" ];then
+		kill -9 $crond_pid
+	fi
+}
