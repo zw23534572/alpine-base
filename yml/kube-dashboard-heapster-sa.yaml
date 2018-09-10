@@ -1,11 +1,11 @@
---- heapster-sa.yaml  ---
+# ---- heapster-sa.yaml  ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: heapster
   namespace: kube-system
 
---- heapster-rbac.yaml ---
+# --- heapster-rbac.yaml ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: heapster
@@ -18,7 +18,7 @@ subjects:
   name: heapster
   namespace: kube-system
 
---- heapster-deployment ---
+# --- heapster-deployment ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -41,7 +41,8 @@ spec:
         - /heapster
         - --source=kubernetes:https://kubernetes.default
         - --sink=influxdb:http://monitoring-influxdb.kube-system.svc:8086
---- heapster-service ---
+
+# --- heapster-service ---
 apiVersion: v1
 kind: Service
 metadata:
@@ -58,7 +59,7 @@ spec:
   selector:
 k8s-app: heapster
 
---- influxdb-deployment ---
+# --- influxdb-deployment ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -82,7 +83,7 @@ spec:
       - name: influxdb-storage
         emptyDir: {}
         
---- influxdb-service ---
+# --- influxdb-service ---
 apiVersion: v1
 kind: Service
 metadata:
