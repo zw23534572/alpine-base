@@ -13,5 +13,5 @@ kubectl get secret -n kube-system
 # 然后获取token。只要是type为service-account-token的secret的token都可以使用。
 # 比如我们获取replicaset-controller-token-wsv4v的touken
 kubectl -n kube-system describe replicaset-controller-token-wsv4v
-## 这里有一个简单的命令：
+## 这里有一个简单的命令1：
 kubectl -n kube-system describe $(kubectl -n kube-system get secret -n kube-system -o name | grep namespace) | grep token
