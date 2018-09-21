@@ -1,24 +1,24 @@
 FROM alpine:3.7
 
-RUN apk add --update bash vim ca-certificates openrc curl
-ADD sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
-COPY glibc-2.25-r0.apk /packages/glibc-2.25-r0.apk
-COPY glibc-bin-2.25-r0.apk /packages/glibc-bin-2.25-r0.apk
-COPY glibc-i18n-2.25-r0.apk /packages/glibc-i18n-2.25-r0.apk
-RUN cd /packages && apk add glibc-bin-2.25-r0.apk glibc-i18n-2.25-r0.apk glibc-2.25-r0.apk
+# RUN apk add --update bash vim ca-certificates openrc curl
+# ADD sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
+# COPY glibc-2.25-r0.apk /packages/glibc-2.25-r0.apk
+# COPY glibc-bin-2.25-r0.apk /packages/glibc-bin-2.25-r0.apk
+# COPY glibc-i18n-2.25-r0.apk /packages/glibc-i18n-2.25-r0.apk
+# RUN cd /packages && apk add glibc-bin-2.25-r0.apk glibc-i18n-2.25-r0.apk glibc-2.25-r0.apk
 
-RUN /usr/glibc-compat/bin/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
+# RUN /usr/glibc-compat/bin/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
 
-ENV LANG=zh_CN.UTF-8 \
-    LANGUAGE=zh_CN.UTF-8
+# ENV LANG=zh_CN.UTF-8 \
+#     LANGUAGE=zh_CN.UTF-8
 
-ADD Shanghai /usr/share/zoneinfo/Asia/
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ 
-    echo 'Asia/Shanghai' >/etc/timezone
+# ADD Shanghai /usr/share/zoneinfo/Asia/
+# RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ 
+#     echo 'Asia/Shanghai' >/etc/timezone
 
-RUN echo "*	*	*	*	*	ntpd -Nqp 1.cn.pool.ntp.org" >> /var/spool/cron/crontabs/root
+# RUN echo "*	*	*	*	*	ntpd -Nqp 1.cn.pool.ntp.org" >> /var/spool/cron/crontabs/root
 
-RUN rm -rf /var/cache/apk/* && rm -rf /packages
+# RUN rm -rf /var/cache/apk/* && rm -rf /packages
 
 
 RUN mkdir -p /export/App && \
