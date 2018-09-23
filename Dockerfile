@@ -1,6 +1,7 @@
 FROM alpine:3.7
 
-RUN apk add --update bash vim ca-certificates openrc curl
+RUN apk add --update bash vim curl
+# RUN apk add --update bash vim ca-certificates openrc curl
 # ADD sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
 # COPY glibc-2.25-r0.apk /packages/glibc-2.25-r0.apk
 # COPY glibc-bin-2.25-r0.apk /packages/glibc-bin-2.25-r0.apk
@@ -18,7 +19,7 @@ RUN apk add --update bash vim ca-certificates openrc curl
 
 # RUN echo "*	*	*	*	*	ntpd -Nqp 1.cn.pool.ntp.org" >> /var/spool/cron/crontabs/root
 
-# RUN rm -rf /var/cache/apk/* && rm -rf /packages
+RUN rm -rf /var/cache/apk/* && rm -rf /packages
 
 
 RUN mkdir -p /export/App && \
