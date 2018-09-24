@@ -5,7 +5,7 @@ kubectl logs -f pod/kube-flannel-ds-5whjw -n kube-system
 kubectl logs -f pod/kube-proxy-xdpvt -n kube-system
 kubectl logs -f pod/kube-scheduler-node -n kube-system
 kubectl logs -f pod/kubernetes-dashboard-78dc5f9d6b-vq4dl -n kube-system
-
+kubectl exec -it alpine-base bash
 
 #获取dashboard 的token
 # 输入下面命令查询kube-system命名空间下的所有secret
@@ -23,7 +23,6 @@ docker exec -it [docker name] /bin/sh 或者 docker exec -it [docker id] /bin/sh
 docker rm -f $(docker ps -a -q)
 
 # 删除所有未打 dangling 标签的镜像
-docker rmi $(docker images -q -f dangling=true)
+docker rmi -f $(docker images | grep "none" | awk '{print $3}')  
 
 #删除镜像 
-docker rmi $(docker images | grep "none" | awk '{print $3}')  
