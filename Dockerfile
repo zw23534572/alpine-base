@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:edge
 
 # RUN apk add --update bash vim curl
 RUN apk add --update bash vim ca-certificates openrc curl
