@@ -3,6 +3,7 @@ FROM alpine:3.7
 # RUN apk add --update bash vim curl busybox-extras
 RUN apk add --update bash vim ca-certificates openrc curl busybox-extras
 ADD sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
+# Java是基于GUN Standard C library(glibc)
 COPY glibc-2.25-r0.apk /packages/glibc-2.25-r0.apk
 COPY glibc-bin-2.25-r0.apk /packages/glibc-bin-2.25-r0.apk
 COPY glibc-i18n-2.25-r0.apk /packages/glibc-i18n-2.25-r0.apk
