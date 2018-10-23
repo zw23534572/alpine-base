@@ -1,3 +1,3 @@
 # alpine-base
 alpine-base
-/etc/kubernetes/manifests
+/etc/kubernetes/manifestsdfd
