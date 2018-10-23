@@ -14,11 +14,11 @@ RUN /usr/glibc-compat/bin/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
 ENV LANG=zh_CN.UTF-8 \
     LANGUAGE=zh_CN.UTF-8
 
-# ADD Shanghai /usr/share/zoneinfo/Asia/
-# RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ 
-#     echo 'Asia/Shanghai' >/etc/timezone
+ADD Shanghai /usr/share/zoneinfo/Asia/
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ 
+    echo 'Asia/Shanghai' >/etc/timezone
 
-# RUN echo "*	*	*	*	*	ntpd -Nqp 1.cn.pool.ntp.org" >> /var/spool/cron/crontabs/root
+RUN echo "*	*	*	*	*	ntpd -Nqp 1.cn.pool.ntp.org" >> /var/spool/cron/crontabs/root
 
 RUN rm -rf /var/cache/apk/* && rm -rf /packages
 
@@ -40,10 +40,10 @@ ADD script/stop.sh /export/servers/script/stop.sh
 RUN chmod +x /export/servers/script/*.sh
 
 #增加启动服务
-# ADD crond /etc/init.d/crond
-# RUN chmod +x /etc/init.d/crond
-# RUN rc-update add crond boot
-# RUN openrc
-# RUN touch /run/openrc/softlevel
+ADD crond /etc/init.d/crond
+RUN chmod +x /etc/init.d/crond
+RUN rc-update add crond boot
+RUN openrc
+RUN touch /run/openrc/softlevel
 
 CMD ["bash", "/export/servers/script/init.sh"]
