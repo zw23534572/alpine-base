@@ -25,4 +25,15 @@ docker rm -f $(docker ps -a -q)
 # 删除所有未打 dangling 标签的镜像
 docker rmi -f $(docker images | grep "none" | awk '{print $3}')  
 
-#删除镜像 
+#清理干净
+systemctl stop kubelet
+systemctl stop docker
+rm -rf /var/lib/cni/
+rm -rf /var/lib/kubelet/*
+rm -rf /etc/cni/
+ifconfig cni0 down
+ifconfig flannel.1 down
+ifconfig docker0 down
+ip link delete cni0
+ip link delete flannel.1
+systemctl start docker
